@@ -68,6 +68,8 @@ class ListingsController < ApplicationController
       buyer_id: current_user.id
     )
 
+    @listing.update(sold: true)
+
     redirect_to order_success_path
   end
 
