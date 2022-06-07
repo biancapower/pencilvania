@@ -23,7 +23,7 @@
 
   <div class="field">
     <% @conditions.each do |option| %>
-      <%= form.label :condition, option %>
+      <%= form.label :condition, format_condition(option) %>
       <%= form.radio_button :condition, option %>
     <% end %>
   </div>
@@ -31,16 +31,6 @@
   <div class="field">
     <%= form.label :price %>
     <%= form.number_field :price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sold %>
-    <%= form.check_box :sold %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
   </div>
 
   <div class="field">
