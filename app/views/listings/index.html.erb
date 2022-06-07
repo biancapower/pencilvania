@@ -27,8 +27,10 @@
         <td><%= listing.user_id %></td>
         <td><%= listing.category_id %></td>
         <td><%= link_to 'Show', listing %></td>
-        <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
-        <td><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.id == listing.user_id %>
+          <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
+          <td><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

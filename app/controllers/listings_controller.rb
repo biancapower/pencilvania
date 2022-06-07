@@ -2,6 +2,7 @@ class ListingsController < ApplicationController
   before_action :set_listing, only: %i[ show edit update destroy ]
   before_action :set_form_vars, only: %i[ new edit ]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
 
   # GET /listings or /listings.json
   def index
@@ -69,6 +70,13 @@ class ListingsController < ApplicationController
     def set_form_vars
       @categories = Category.all
       @conditions = Listing.conditions.keys
+    end
+
+    def authorize_user
+      if @listing.user_id != current_user.id
+        flash[:alert] = "You can't do that!"
+        redirect_to listings_path
+      end
     end
 
     # Only allow a list of trusted parameters through.
