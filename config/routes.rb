@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'orders/success'
+  get 'orders/bought'
+  get 'orders/sold'
   resources :listings
   devise_for :users
   root 'pages#home'
