@@ -1,0 +1,28 @@
+<h1>Items you have bought</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Condition</th>
+      <th>Price</th>
+      <th>Seller</th>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bought_items.each do |item| %>
+      <tr>
+        <td><%= item.listing.title %></td>
+        <td><%= item.listing.description %></td>
+        <td><%= item.listing.condition %></td>
+        <td><%= number_to_currency(item.listing.price) %></td>
+        <td><%= item.seller.username %></td>
+        <td><%= item.listing.category.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

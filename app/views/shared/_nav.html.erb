@@ -1,0 +1,16 @@
+<%= link_to "🏚", root_path %>
+<%= link_to "Listings", listings_path, class: "button" %>
+
+<span>
+	<%= link_to "Bought Items", orders_bought_path %>
+	<%= link_to "Sold Items", orders_sold_path %>
+</span>
+
+<span style="float: right">
+	<% if user_signed_in? %>
+		<%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "button button-primary" %>
+	<% else %>
+		<%= link_to "Sign up", new_user_registration_path, class: "button button-primary" %>
+		<%= link_to "Sign in", new_user_session_path, class: "button button-primary" %>
+	<% end %>
+</span>

@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+  <% if @listing.picture.attached? %>
+    <%= image_tag @listing.picture, alt: @listing.title %>
+  <% else %>
+    <%= image_tag "https://placekitten.com/400/500", alt: @listing.title %>
+  <% end %>
+</div>
+
+<% if @listing.sold %>
+  <h1>SOLD</h1>
+<% elsif current_user && current_user.id == @listing.user_id %>
+  <h1>Don't buy your own item, it's weird</h1>
+<% elsif current_user %>
+  <%= button_to "Buy me!", place_order_path %>
+<% else %>
+  <h1>Please log in to make a purchase</h1>
+<% end %>
+
+<p>
+  <strong>Title:</strong>
+  <%= @listing.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @listing.description %>
+</p>
+
+<p>
+  <strong>Condition:</strong>
+  <%= @listing.condition %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @listing.price %>
+</p>
+
+<p>
+  <strong>Sold:</strong>
+  <%= @listing.sold %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @listing.user_id %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @listing.category_id %>
+</p>
+
+<% if current_user.id == @listing.user_id %>
+  <%= link_to 'Edit', edit_listing_path(@listing) %> |
+<% end %>
+
+<%= link_to 'Back', listings_path %>
